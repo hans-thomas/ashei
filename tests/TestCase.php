@@ -2,13 +2,10 @@
 
 	namespace Hans\Starter\Tests;
 
-	use Hans\Starter\StarterServiceProvider;
-	use Illuminate\Contracts\Filesystem\Filesystem;
+	use Hans\Ashei\AsheiServiceProvider;
 	use Illuminate\Foundation\Application;
 	use Illuminate\Foundation\Testing\RefreshDatabase;
 	use Illuminate\Routing\Router;
-	use Illuminate\Support\Arr;
-	use Illuminate\Support\Facades\Storage;
 	use Orchestra\Testbench\TestCase as BaseTestCase;
 
 	class TestCase extends BaseTestCase {
@@ -41,7 +38,7 @@
 		 */
 		protected function getPackageProviders( $app ) {
 			return [
-				StarterServiceProvider::class
+				AsheiServiceProvider::class
 			];
 		}
 

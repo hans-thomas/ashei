@@ -1,6 +1,6 @@
 {
-    "name": "hans-thomas/starter",
-    "description": "package-starter is a predefined laravel packages scaffold",
+    "name": "hans-thomas/ashei",
+    "description": "ashei is an epub parser for php.",
     "license": "MIT",
     "authors": [
         {
@@ -17,18 +17,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Hans\\Starter\\": "src/"
+            "Hans\\Ashei\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Hans\\Starter\\Tests\\": "tests/"
+            "Hans\\Ashei\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Hans\\Starter\\StarterServiceProvider"
+                "Hans\\Ashei\\AsheiServiceProvider"
             ]
         }
     },
