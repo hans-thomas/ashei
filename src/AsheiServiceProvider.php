@@ -4,6 +4,7 @@
 	namespace Hans\Ashei;
 
 
+	use Hans\Ashei\Services\AsheiService;
 	use Illuminate\Support\ServiceProvider;
 
 	class AsheiServiceProvider extends ServiceProvider {
@@ -14,7 +15,7 @@
 		 * @return void
 		 */
 		public function register() {
-			//
+			$this->app->singleton( 'ashei-service', AsheiService::class );
 		}
 
 		/**

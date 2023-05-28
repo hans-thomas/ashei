@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "hans-thomas/epub": "^1.0"
     },
     "require-dev": {
         "orchestra/testbench": "^8.0",

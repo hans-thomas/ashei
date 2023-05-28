@@ -1,6 +1,6 @@
 <?php
 
-	namespace Hans\Starter\Tests;
+	namespace Hans\Ashei\Tests;
 
 	use Hans\Ashei\AsheiServiceProvider;
 	use Illuminate\Foundation\Application;
