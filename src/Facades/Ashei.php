@@ -8,6 +8,7 @@
 
 	/**
 	 * @method static read( string $book )
+	 * @method static iterator( string $book )
 	 * @see AsheiService
 	 */
 	class Ashei extends Facade {
