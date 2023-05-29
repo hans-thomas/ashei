@@ -2,15 +2,22 @@
 
 	namespace Hans\Ashei\Services;
 
-	use Epubli\Epub\Data\Item;
 	use Epubli\Epub\Epub;
+	use Epubli\Exception\Exception;
 	use Generator;
 	use Illuminate\Support\Arr;
 	use Illuminate\Support\Str;
 
 	class AsheiService {
 
-
+		/**
+		 * Read whole book at once
+		 *
+		 * @param string $book
+		 *
+		 * @return array
+		 * @throws Exception
+		 */
 		public function read( string $book ): array {
 			// setting up
 			$epub    = new Epub( $book );
@@ -35,13 +42,21 @@
 			return $this->makeResult( $content );
 		}
 
+		/**
+		 * Read one section at each iterate
+		 *
+		 * @param string $book
+		 *
+		 * @return Generator
+		 * @throws Exception
+		 */
 		public function iterator( string $book ): Generator {
 			// setting up
 			$epub    = new Epub( $book );
 			$content = null;
 			foreach ( $epub->getSpine() as $index => $spine ) {
 				// find titles
-				$titles = $this->extractTitles( $spine );
+				$titles = $this->extractTitles( $spine->getData() );
 				// parse contents
 				$text = [];
 				foreach ( Arr::wrap( $spine->getContents() ) as $item ) {
@@ -57,10 +72,17 @@
 
 		}
 
-		private function extractTitles( Item $spine ): array {
+		/**
+		 * Extract titles from page content
+		 *
+		 * @param string $data
+		 *
+		 * @return array
+		 */
+		private function extractTitles( string $data ): array {
 			// find titles
 			$matches   = [];
-			$ifMatched = preg_match_all( '/(<h[1-4].*>.*<\/h[1-4]>)+/', $spine->getData(), $matches );
+			$ifMatched = preg_match_all( '/(<h[1-4].*>.*<\/h[1-4]>)+/', $data, $matches );
 			$titles    = [];
 			if ( $ifMatched ) {
 				foreach ( $matches as $match ) {
@@ -74,9 +96,17 @@
 				}
 			}
 
-			return $titles;
+			return array_unique( $titles );
 		}
 
+		/**
+		 * Extract text from retrieved content
+		 *
+		 * @param string|array $content
+		 * @param array        $titles
+		 *
+		 * @return array
+		 */
 		private function extractText( string|array $content, array $titles ): array {
 			$text = Str::replace( [ "\t\t\t\n", "\t\t\n", "\t\t\t", "\t" ], '', $content );
 			$text = preg_split( '/(\\n)+/', $text );
@@ -96,6 +126,13 @@
 			return $text;
 		}
 
+		/**
+		 * Chunk content and make final result
+		 *
+		 * @param $content
+		 *
+		 * @return array
+		 */
 		private function makeResult( $content ): array {
 			$result    = [];
 			$paragraph = '';
@@ -105,7 +142,7 @@
 						$page :
 						Str::of( $page )->finish( "<br>" );
 
-					if ( strlen( $paragraph ) <= 2000 and $index < count( $pages )-1 ) {
+					if ( strlen( $paragraph ) <= 2000 and $index < count( $pages ) - 1 ) {
 						continue;
 					}
 

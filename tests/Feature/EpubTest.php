@@ -30,7 +30,7 @@
 
 			foreach ( Ashei::iterator( $file ) as $number => $page ) {
 				$data[] = $page;
-				if ( $number >= 1 ) {
+				if ( $number > 1 ) {
 					break;
 				}
 			}
