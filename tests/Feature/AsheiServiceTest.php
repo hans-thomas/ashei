@@ -5,7 +5,7 @@
 	use Hans\Ashei\Facades\Ashei;
 	use Hans\Ashei\Tests\TestCase;
 
-	class EpubTest extends TestCase {
+	class AsheiServiceTest extends TestCase {
 
 		/**
 		 * @test
@@ -44,5 +44,20 @@
 				$data[ 1 ]
 			);
 		}
+
+		/**
+		 * @test
+		 *
+		 * @return void
+		 */
+		public function setParagraphLength(): void {
+			$file = realpath( __DIR__ . '/../resources/the-demon-girl-cropped.epub' );
+
+			self::assertEquals(
+				require __DIR__ . '/../resources/chapter-one-50-paragraph-length.php',
+				Ashei::setParagraphLength( 50 )->read( $file )
+			);
+		}
+
 
 	}

@@ -9,6 +9,7 @@
 	/**
 	 * @method static read( string $book )
 	 * @method static iterator( string $book )
+	 * @method static setParagraphLength( int $paragraph_length )
 	 * @see AsheiService
 	 */
 	class Ashei extends Facade {

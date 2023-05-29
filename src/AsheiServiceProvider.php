@@ -15,7 +15,7 @@
 		 * @return void
 		 */
 		public function register() {
-			$this->app->singleton( 'ashei-service', AsheiService::class );
+			$this->app->bind( 'ashei-service', AsheiService::class );
 		}
 
 		/**

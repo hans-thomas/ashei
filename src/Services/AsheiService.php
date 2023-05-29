@@ -11,6 +11,17 @@
 	class AsheiService {
 
 		/**
+		 * Determine maximum length of each paragraph
+		 *
+		 * @var int
+		 */
+		private int $paragraph_length;
+
+		public function __construct() {
+			$this->paragraph_length = config( 'ashei.paragraph.length', 2000 );
+		}
+
+		/**
 		 * Read whole book at once
 		 *
 		 * @param string $book
@@ -24,7 +35,7 @@
 			$content = null;
 			foreach ( $epub->getSpine() as $index => $spine ) {
 				// find titles
-				$titles = $this->extractTitles( $spine );
+				$titles = $this->extractTitles( $spine->getData() );
 				// parse contents
 				$text = [];
 				foreach ( Arr::wrap( $spine->getContents() ) as $item ) {
@@ -142,7 +153,7 @@
 						$page :
 						Str::of( $page )->finish( "<br>" );
 
-					if ( strlen( $paragraph ) <= 2000 and $index < count( $pages ) - 1 ) {
+					if ( strlen( $paragraph ) <= $this->paragraph_length and $index < count( $pages ) - 1 ) {
 						continue;
 					}
 
@@ -152,6 +163,19 @@
 			}
 
 			return $result;
+		}
+
+		/**
+		 * Set maximum length For each paragraph
+		 *
+		 * @param int $length
+		 *
+		 * @return self
+		 */
+		public function setParagraphLength( int $length ): self {
+			$this->paragraph_length = $length;
+
+			return $this;
 		}
 
 	}
