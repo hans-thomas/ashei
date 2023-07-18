@@ -11,7 +11,7 @@ Ashei is a epub parser that allows you to get epub books content.
 
 ## Installation
 
-Clone latest release via cURL
+Clone latest release via cURL.
 
 ```bash
 composer require hans-thomas/ashei
@@ -29,7 +29,7 @@ php artisan vendor:publish --tag ashei-config
 
 ### read
 
-To get whole content at once:
+To get whole content at once.
 
 ```php
 use Hans\Ashei\Facades\Ashei;
