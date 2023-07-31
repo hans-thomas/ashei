@@ -1,11 +1,12 @@
 # Ashei
 
-<p align="center"><img alt="Valravn Logo" src="assets/ashei-banner.png"></p>
+<p align="center"><img alt="ashei banner" src="assets/ashei-banner.png"></p>
 
 [![codecov](https://codecov.io/gh/hans-thomas/ashei/branch/master/graph/badge.svg?token=X1D6I0JLSZ)](https://codecov.io/gh/hans-thomas/ashei)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/hans-thomas/ashei/php.yml)
 ![GitHub top language](https://img.shields.io/github/languages/top/hans-thomas/ashei)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/hans-thomas/ashei)
+![StyleCi](https://github.styleci.io/repos/646372835/shield?style=plastic)
 
 Ashei is a epub parser that allows you to get epub books content.
 
