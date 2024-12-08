@@ -1,6 +1,12 @@
 {
     "name": "hans-thomas/ashei",
     "description": "ashei is an epub parser for php.",
+    "keywords": [
+        "laravel",
+        "parser",
+        "epub",
+        "epub-parser"
+    ],
     "license": "MIT",
     "authors": [
         {
